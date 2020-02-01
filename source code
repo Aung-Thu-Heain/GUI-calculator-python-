@@ -1,0 +1,101 @@
+from tkinter import *
+import tkinter as tk
+
+value ="" #global variable
+
+table =tk.Tk()
+values=tk.StringVar()
+values.set("Aung Thu Heain")
+table.title("Calculator")
+table.resizable(0,1)
+
+def click(num):        #variable passing through from number button
+        global value
+        value += str(num)
+        values.set(value)
+
+def calculation():           #calculation 
+        try:
+                global value
+                total=str(eval(value))
+                values.set(total)
+                value =""
+        
+        except:
+                values.set("error")
+                value=" "
+
+def ac():           #for AC button
+        global value
+        value=""
+        values.set("")
+        
+class main(Frame):
+    def __init__(self,x):
+        Frame.__init__(self,x)
+        self.grid()
+        self.gui()
+
+    def gui(self):
+        screen =Entry(table,textvariable=values,bg="powder blue",width=40,justify=RIGHT)
+        screen.grid(row=0,column=0,columnspan=10,sticky="NWNESWSE")
+
+       #first roll start
+        five=Button(table,text="6",bg="black",fg="white",command=lambda:click("6"),width=5)
+        five.grid(row=1,column=0,sticky="NWNESWSE")
+
+        six=Button(table,text="7",bg="black",fg="white",command=lambda:click("7"),width=5)
+        six.grid(row=1,column=1,sticky="NWNESWSE")
+
+        seven=Button(table,text="8",bg="black",fg="white",command=lambda:click("8"),width=5)
+        seven.grid(row=1,column=2,sticky="NWNESWSE")
+        
+        eight=Button(table,text="9",bg="black",fg="white",command=lambda:click("9"),width=5)
+        eight.grid(row=1,column=3,sticky="NWNESWSE")
+
+        allclear=Button(table,text="AC",bg="red",fg="white",command=lambda:ac(),width=5)
+        allclear.grid(row=1,column=4,sticky="NWNESWSE")
+        
+         #second roll start
+        one=Button(table,text="2",bg="black",fg="white",command=lambda:click("2"))
+        one.grid(row=2,column=0,sticky="NWNESWSE")
+
+        two=Button(table,text="3",bg="black",fg="white",command=lambda:click("3"))
+        two.grid(row=2,column=1,sticky="NWNESWSE")
+
+        three=Button(table,text="4",bg="black",fg="white",command=lambda:click("4"))
+        three.grid(row=2,column=2,sticky="NWNESWSE")
+
+        four=Button(table,text="5",bg="black",fg="white",command=lambda:click("5"))
+        four.grid(row=2,column=3,sticky="NWNESWSE")
+
+        plus=Button(table,text="+",bg="black",fg="white",command=lambda:click("+"))
+        plus.grid(row=2,column=4,sticky="NWNESWSE")
+
+        #third roll start
+        zero=Button(table,text="0",bg="black",fg="white",command=lambda:click("0"))
+        zero.grid(row=3,column=0,sticky="NWNESWSE")
+
+        eight=Button(table,text="1",bg="black",fg="white",command=lambda:click("1"))
+        eight.grid(row=3,column=1,sticky="NWNESWSE")
+        
+        div=Button(table,text="% ",bg="black",fg="white",command=lambda:click("/"))
+        div.grid(row=3,column=2,sticky="NWNESWSE")
+
+        mult=Button(table,text="ᳵ",bg="black",fg="white",command=lambda:click("*"))
+        mult.grid(row=3,column=3,sticky="NWNESWSE")
+        
+        sub=Button(table,text="-",bg="black",fg="white",command=lambda:click("-"))
+        sub.grid(row=3,column=4,sticky="NWNESWSE")
+
+        #fourth line start
+        decimal=Button(table,text=".",bg="black",fg="white",command=lambda:click("."))
+        decimal.grid(row=4,column=0,sticky="NWNESWSE")
+
+        equal=Button(table,text="=",bg="green",fg="black",command=lambda:calculation())
+        equal.grid(row=4,column=1,columnspan=8,sticky="NWNESWSE")
+          
+final = main(table)
+print(final)
+
+    
